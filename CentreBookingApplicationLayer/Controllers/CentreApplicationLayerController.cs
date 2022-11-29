@@ -111,5 +111,11 @@ namespace CentreBookingApplicationLayer.Controllers
                 return Content(HttpStatusCode.NotFound, "Centre given is unregistered in the system!");
             }
         }
+
+        /*
+        [Route("authenticate")]
+        [HttpGet]
+        public IHttpActionResult Authenticate()
+        */
     }
 }
