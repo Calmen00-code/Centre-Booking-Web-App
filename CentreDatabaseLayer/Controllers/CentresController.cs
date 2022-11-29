@@ -21,9 +21,10 @@ namespace CentreDatabaseLayer.Controllers
         public static readonly string ADMIN_PASS = "adminpass";
 
         [Route("")]
-        public IQueryable<Centre> GetCentres()
+        public List<Centre> GetCentres()
         {
-            return db.Centres;
+            List<Centre> centres = db.Centres.ToList();
+            return centres;
         }
 
         [Route("{centreName}")]
@@ -103,7 +104,7 @@ namespace CentreDatabaseLayer.Controllers
             }
 
             CreatedAtRoute("DefaultApi", new { id = centre.CentreName }, centre);
-            return Ok();
+            return Ok(centre);
         }
 
         [Route("{centreName}")]
