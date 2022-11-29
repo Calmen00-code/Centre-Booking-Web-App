@@ -67,4 +67,7 @@ class Menu extends React.Component {
     }
 }
 
-ReactDOM.render(<Home />, document.getElementById('content'));
+ReactDOM.render(
+    <Home url='' />,
+    document.getElementById('content')
+);

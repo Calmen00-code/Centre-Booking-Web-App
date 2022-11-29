@@ -8,5 +8,7 @@ namespace centre_booking.Controllers
         {
             return View();
         }
+
+        public IActionResult IsAuthenticate([FromBody] string )
     }
 }
