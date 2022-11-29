@@ -46,3 +46,4 @@ C:\Users\calme\OneDrive\Desktop\centre-booking\centre-booking\obj\Debug\net6.0\r
 C:\Users\calme\OneDrive\Desktop\centre-booking\centre-booking\obj\Debug\net6.0\centre-booking.pdb
 C:\Users\calme\OneDrive\Desktop\centre-booking\centre-booking\obj\Debug\net6.0\centre-booking.genruntimeconfig.cache
 C:\Users\calme\OneDrive\Desktop\centre-booking\centre-booking\obj\Debug\net6.0\ref\centre-booking.dll
+C:\Users\calme\OneDrive\Desktop\centre-booking\centre-booking\bin\Debug\net6.0\RestSharp.dll

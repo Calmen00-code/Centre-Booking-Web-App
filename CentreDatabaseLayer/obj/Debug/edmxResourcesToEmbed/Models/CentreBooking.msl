@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CentreDatabaseModelStoreContainer" CdmEntityContainer="CentreDatabaseEntities">
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="CentreDatabaseModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Person" ColumnName="Person" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Centre" ColumnName="Centre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Centres">
+      <EntityTypeMapping TypeName="CentreDatabaseModel.Centre">
+        <MappingFragment StoreEntitySet="Centre">
+          <ScalarProperty Name="CentreName" ColumnName="CentreName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

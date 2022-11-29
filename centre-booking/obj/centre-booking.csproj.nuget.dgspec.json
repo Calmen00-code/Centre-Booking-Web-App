@@ -52,9 +52,17 @@
               "target": "Package",
               "version": "[3.20.7, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            },
             "React.AspNet": {
               "target": "Package",
               "version": "[5.2.12, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[108.0.3, )"
             }
           },
           "imports": [

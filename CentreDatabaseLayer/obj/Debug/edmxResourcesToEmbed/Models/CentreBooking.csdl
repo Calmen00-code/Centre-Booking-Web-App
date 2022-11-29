@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CentreDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="StartDate" />
+    </Key>
+    <Property Name="Person" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Centre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Centre1" Relationship="Self.FK_Booking_Centre" FromRole="Booking" ToRole="Centre" />
+  </EntityType>
+  <EntityType Name="Centre">
+    <Key>
+      <PropertyRef Name="CentreName" />
+    </Key>
+    <Property Name="CentreName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Centre" FromRole="Centre" ToRole="Booking" />
+  </EntityType>
+  <Association Name="FK_Booking_Centre">
+    <End Role="Centre" Type="Self.Centre" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Centre">
+        <PropertyRef Name="CentreName" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CentreDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Centres" EntityType="Self.Centre" />
+    <AssociationSet Name="FK_Booking_Centre" Association="Self.FK_Booking_Centre">
+      <End Role="Centre" EntitySet="Centres" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
