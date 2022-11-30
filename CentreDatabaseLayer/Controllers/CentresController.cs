@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.UI.WebControls;
+using APIClasses;
 using CentreDatabaseLayer.Models;
 
 namespace CentreDatabaseLayer.Controllers
@@ -17,8 +19,8 @@ namespace CentreDatabaseLayer.Controllers
     public class CentresController : ApiController
     {
         private CentreDatabaseEntities db = new CentreDatabaseEntities();
-        public static readonly string ADMIN_USERNAME = "admin";
-        public static readonly string ADMIN_PASS = "adminpass";
+        private static readonly string ADMIN_USERNAME = "admin";
+        private static readonly string ADMIN_PASS = "adminpass";
 
         [Route("")]
         public List<Centre> GetCentres()
@@ -121,6 +123,19 @@ namespace CentreDatabaseLayer.Controllers
             db.SaveChanges();
 
             return Ok(centre);
+        }
+
+        [Route("authenticate")]
+        [HttpPost]
+        public IHttpActionResult Authenticate([FromBody] UserAPI user)
+        {
+            if (user.Name.Equals(ADMIN_USERNAME) && user.Password.Equals(ADMIN_PASS))
+            {
+                return Ok();
+            } else
+            {
+                return BadRequest();
+            }
         }
 
         protected override void Dispose(bool disposing)

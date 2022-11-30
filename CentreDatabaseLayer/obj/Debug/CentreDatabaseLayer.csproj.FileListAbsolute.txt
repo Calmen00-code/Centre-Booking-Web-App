@@ -107,3 +107,5 @@ C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\System.Te
 C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\System.Text.Json.xml
 C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\System.ValueTuple.xml
+C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\APIClasses.dll
+C:\Users\calme\OneDrive\Desktop\centre-booking\CentreDatabaseLayer\bin\APIClasses.pdb

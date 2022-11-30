@@ -112,10 +112,23 @@ namespace CentreBookingApplicationLayer.Controllers
             }
         }
 
-        /*
         [Route("authenticate")]
-        [HttpGet]
-        public IHttpActionResult Authenticate()
-        */
+        [HttpPost]
+        public IHttpActionResult Authenticate([FromBody] UserAPI user)
+        {
+            RestClient restClient = new RestClient(CENTRE_DATABASE_URL);
+            RestRequest authenticateRequest = new RestRequest("api/centres/authenticate", Method.Post);
+            authenticateRequest.AddJsonBody(user);
+            RestResponse authenticateResponse = restClient.Execute(authenticateRequest);
+
+            if (authenticateResponse.IsSuccessful)
+            {
+                return Ok("Welcome Admin!");
+            }
+            else
+            {
+                return Content(HttpStatusCode.BadRequest, "User unauthorised!");
+            }
+        }
     }
 }

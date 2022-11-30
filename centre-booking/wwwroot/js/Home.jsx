@@ -21,7 +21,26 @@
         if (this.state.username === '' && this.state.password === '') {
             alert('Missing username or password!');
         } else {
-            alert('OK! username: ' + this.state.username + ', Password: ' + this.state.password);
+            var request;
+            if (window.XMLHttpRequest) {
+                // New browsers
+                request = new XMLHttpRequest();
+            } else {
+                // Old IE Browsers
+                request = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            if (request != null) {
+                request.open("POST", "/Home/IsAuthenticate", false);
+                var params = "{Name: '" + this.state.username + "', Password: '" + this.state.password + "'}";
+                request.setRequestHeader("Content-Type", "application/json");
+                request.onload = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+                        var response = JSON.parse(request.responseText);
+                        alert(response.value);
+                    }
+                }.bind(this);
+                request.send(params);
+            }
         }
     }
 
