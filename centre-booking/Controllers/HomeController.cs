@@ -13,25 +13,39 @@ namespace centre_booking.Controllers
             return View();
         }
 
-        public IActionResult IsAuthenticate(string username, string password)
+        [HttpPost]
+        public IActionResult IsAuthenticate([FromBody] UserAPI user)
         {
             RestClient restClient = new RestClient(APPLICATION_LAYER_URL);
+            // DEBUG
+            System.Diagnostics.Debug.WriteLine("Username: " + user.Name + ", Password: " + user.Password);
             RestRequest authenticateRequest = new RestRequest("api/centre-application-layer/authenticate", Method.Post);
 
-            UserAPI user = new UserAPI();
-            user.Name = username;
-            user.Password = password;
             authenticateRequest.AddJsonBody(user);
             
             RestResponse authenticateResponse = restClient.Execute(authenticateRequest);
             if (authenticateResponse.IsSuccessful) 
             {
-                return Ok(JsonConvert.DeserializeObject<string>(authenticateResponse.Content));
+                System.Diagnostics.Debug.WriteLine("Successful authenticate request");
+                // return Ok(JsonConvert.DeserializeObject<string>(authenticateResponse.Content));
+                return Ok();
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("BadRequest authenticate request");
                 return BadRequest(JsonConvert.DeserializeObject<string>(authenticateResponse.Content));
             }
+        }
+
+        [HttpPost]
+        public IActionResult SomethingPost([FromBody] UserAPI user)
+        {
+            return Ok();
+        }
+
+        public IActionResult Something([FromBody] UserAPI user)
+        {
+            return Ok();
         }
     }
 }

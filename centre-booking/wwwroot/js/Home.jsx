@@ -18,9 +18,10 @@
     }
 
     handleLogin() {
-        if (this.state.username === '' && this.state.password === '') {
+        if (this.state.username === '' || this.state.password === '') {
             alert('Missing username or password!');
         } else {
+            /*
             var request;
             if (window.XMLHttpRequest) {
                 // New browsers
@@ -32,15 +33,42 @@
             if (request != null) {
                 request.open("POST", "/Home/IsAuthenticate", false);
                 var params = "{Name: '" + this.state.username + "', Password: '" + this.state.password + "'}";
+                // DEBUG
+                //console.log("Username: " + this.state.username + ", Password: " + this.state.password);
+                alert("Username: " + this.state.username + ", Password: " + this.state.password);
+                // DEBUG ENDS
+
                 request.setRequestHeader("Content-Type", "application/json");
-                request.onload = function () {
+                request.onload = () => {
                     if (request.readyState == 4 && request.status == 200) {
-                        var response = JSON.parse(request.responseText);
+                        alert("request success");
+                        const response = JSON.parse(request.responseText);
                         alert(response.value);
                     }
-                }.bind(this);
+                };
                 request.send(params);
-            }
+                alert("Request Sent");
+            } 
+            */
+            $.ajax({
+                type: 'POST',
+                url: '/Home/IsAuthenticate',
+                contentType: 'application/json',
+                cache: false,
+                data: JSON.stringify(
+                {
+                    "Name": this.state.username,
+                    "Password": this.state.password
+                }),
+                success: function (data, textStatus, jQxhr)
+                {
+                    alert("Welcome Admin!")
+                }.bind(this),
+                error: function (xhr, textStatus, error)
+                {
+                    alert(xhr.responseText);
+                }.bind(this)
+            });
         }
     }
 
