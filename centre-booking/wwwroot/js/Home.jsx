@@ -32,7 +32,7 @@
             }
             if (request != null) {
                 request.open("POST", "/Home/IsAuthenticate", false);
-                var params = "{Name: '" + this.state.username + "', Password: '" + this.state.password + "'}";
+                var params = "{Name: " + this.state.username + ", Password: " + this.state.password + "}";
                 // DEBUG
                 //console.log("Username: " + this.state.username + ", Password: " + this.state.password);
                 alert("Username: " + this.state.username + ", Password: " + this.state.password);
@@ -47,14 +47,15 @@
                     }
                 };
                 request.send(params);
-                alert("Request Sent");
             } 
             */
+
+            /*
             $.ajax({
                 type: 'POST',
-                url: '/Home/IsAuthenticate',
+                url: '/Home/SomethingPost/',
                 contentType: 'application/json',
-                cache: false,
+                cache: true,
                 data: JSON.stringify(
                 {
                     "Name": this.state.username,
@@ -62,13 +63,37 @@
                 }),
                 success: function (data, textStatus, jQxhr)
                 {
-                    alert("Welcome Admin!")
+                    console.log("Welcome Admin");
+                    alert("Welcome Admin!");
                 }.bind(this),
                 error: function (xhr, textStatus, error)
                 {
+                    console.log("error");
+                    alert("Error!");
                     alert(xhr.responseText);
                 }.bind(this)
             });
+            */
+
+            const data = {
+                Name: this.state.username.toString(),
+                Password: this.state.password.toString()
+            };
+
+            fetch(`/Home/IsAuthenticate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then((data) => {
+                    alert('Welcome Admin: ', data);
+                })
+                .catch((error) => {
+                    alert('Error: ', error);
+                });
         }
     }
 
@@ -115,6 +140,6 @@ class Menu extends React.Component {
 }
 
 ReactDOM.render(
-    <Home url='' />,
+    <Home />,
     document.getElementById('content')
 );

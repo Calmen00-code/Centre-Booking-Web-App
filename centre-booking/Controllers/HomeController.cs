@@ -28,7 +28,7 @@ namespace centre_booking.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("Successful authenticate request");
                 // return Ok(JsonConvert.DeserializeObject<string>(authenticateResponse.Content));
-                return Ok();
+                return Ok(); // this does not work either
             }
             else
             {

@@ -118,6 +118,8 @@ namespace CentreBookingApplicationLayer.Controllers
         {
             RestClient restClient = new RestClient(CENTRE_DATABASE_URL);
             RestRequest authenticateRequest = new RestRequest("api/centres/authenticate", Method.Post);
+            // DEBUG
+            System.Diagnostics.Debug.WriteLine("UserAPI name: " + user.Name + ", UserAPI pass: " + user.Password);
             authenticateRequest.AddJsonBody(user);
             RestResponse authenticateResponse = restClient.Execute(authenticateRequest);
 
